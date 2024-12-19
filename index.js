@@ -3,13 +3,14 @@ const getData = async () => {
   const resp = await res.text();
   //   console.log(resp);
   const cdata = resp.split('\n').map((row) => {
-    const [time1, time2, open, high, low, close] = row.split(',');
+    const [datetime, open, high, low, close, volume] = row.split(',');
     return {
-      time: new Date(`${time1}, ${time2}`).getTime() / 1000,
+      datetime: new Date(`${datetime}`).getTime() / 1000,
       open: open * 1,
       high: high * 1,
       low: low * 1,
       close: close * 1,
+      volume: volume * 1,
     };
   });
   return cdata;
